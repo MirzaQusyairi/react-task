@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/react-task/static/css/main.c8ae1535.chunk.css",
+    "main.js": "/react-task/static/js/main.dcd980a3.chunk.js",
+    "main.js.map": "/react-task/static/js/main.dcd980a3.chunk.js.map",
+    "runtime-main.js": "/react-task/static/js/runtime-main.35768414.js",
+    "runtime-main.js.map": "/react-task/static/js/runtime-main.35768414.js.map",
+    "static/js/2.48dd4fe9.chunk.js": "/react-task/static/js/2.48dd4fe9.chunk.js",
+    "static/js/2.48dd4fe9.chunk.js.map": "/react-task/static/js/2.48dd4fe9.chunk.js.map",
+    "static/js/3.22706254.chunk.js": "/react-task/static/js/3.22706254.chunk.js",
+    "static/js/3.22706254.chunk.js.map": "/react-task/static/js/3.22706254.chunk.js.map",
+    "index.html": "/react-task/index.html",
+    "static/css/main.c8ae1535.chunk.css.map": "/react-task/static/css/main.c8ae1535.chunk.css.map",
+    "static/js/2.48dd4fe9.chunk.js.LICENSE.txt": "/react-task/static/js/2.48dd4fe9.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/react-task/static/media/logo-ALTA-white.315cf9fc.png",
+    "static/media/matthew.52885822.jpg": "/react-task/static/media/matthew.52885822.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.35768414.js",
+    "static/js/2.48dd4fe9.chunk.js",
+    "static/css/main.c8ae1535.chunk.css",
+    "static/js/main.dcd980a3.chunk.js"
+  ]
+}
