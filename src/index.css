@@ -1,13 +1,214 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body{
+  font-family: 'Roboto', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html, body {
+  height: 100%;
 }
+
+.text-orange{
+  color: #F47522;
+}
+
+.text-blue{
+  color: #19345E !important;
+}
+
+.fs-16{
+  font-size: 16px;
+}
+
+.fs-20{
+  font-size: 20px;
+}
+
+.fs-25{
+  font-size: 20px;
+}
+
+.fs-85{
+  font-size: 60px;
+}
+
+.fs-35{
+  font-size: 25px;
+}
+
+.fw-400{
+  font-weight: 400;
+}
+
+.fw-500{
+  font-weight: 500;
+}
+
+.fw-700{
+  font-weight: 700;
+}
+
+.rounded-10{
+  border-radius: 10px;
+}
+
+/* CSS Home */
+.active{
+  color: #F47522 !important;
+  font-weight: 700;
+}
+
+.nav-link:hover{
+  color: #F47522 !important;
+}
+
+.background{
+  background-image: url("./assets/img/bg-img.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 90%;
+  width: 100%;
+}
+
+.profile {
+  min-height: 700px;
+}
+
+.img-profile{
+  height: 270px;
+}
+
+.btn-orange{
+  background-color: #F47522 !important;
+  color: white !important;
+  border: none ;
+  border-radius: 20px;
+  padding: 10px 28px;
+}
+
+.btn-orange:hover{
+  background-color: #ff5e00 !important;
+  color: white !important;
+}
+
+.line1 {
+  text-align: center;
+}
+
+.line2 {
+  text-align: center;
+}
+
+.line3 {
+  text-align: center;
+}
+
+.line4 {
+  text-align: center;
+}
+
+
+/* CSS Contact Us */
+.left-bg {
+  background: url(./assets/img/charles.jpg);
+  width: 64vh;
+  height: 42vh;
+  padding: 0;
+  background-size: cover;
+}
+
+.logo {
+  background: url(./assets/img/logo-ALTA-white.png);
+      background-size: auto;
+  width: 40vh;
+  height: 20vh;
+  background-size: cover;
+  position: absolute;
+  top: 12vw;
+  left: 12vw;
+  padding: 0;
+}
+
+.overlay {
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #19345EA6;
+}
+
+/* CSS Message */
+
+.message {
+  min-height: 745px;
+}
+
+.message .data{
+  max-height: 504.8px;
+  min-height: 504.8px;
+}
+
+#disp-message{
+  max-height: 76.8px;
+  min-height: 76.8px;
+}
+
+@media (min-width: 992px) { 
+  .fs-25{
+    font-size: 25px;
+  }
+  
+  .fs-85{
+    font-size: 85px;
+  }
+  
+  .fs-35{
+    font-size: 35px;
+  }
+
+  /* CSS Home */
+  .img-profile{
+    height: 400px;
+  }
+
+  .line1 {
+    text-align: left;
+  }
+  
+  .line2 {
+    text-align: left;
+  }
+  
+  .line3 {
+    text-align: left;
+  }
+
+  .line4 {
+    text-align: left;
+  }
+
+  /* CSS Contact Us */
+  .left-bg {
+    background: url(./assets/img/charles.jpg);
+    width: 66vh;
+    height: 100vh;
+    padding: 0;
+    background-size: cover;
+  }
+
+  .logo {
+    background: url(./assets/img/logo-ALTA-white.png);
+    width: 40vh;
+    height: 20vh;
+    background-size: cover;
+    position: absolute;
+    top: 20vw;
+    left: 8vw;
+    padding: 0;
+  }
+}
+
+
+
+
