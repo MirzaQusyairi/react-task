@@ -1,15 +1,15 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import ContactUs from './Routes/ContactUs';
 import Home from './Routes/Home';
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter basename="/">
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/contactUs" exact component={ContactUs} />
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
