@@ -1,0 +1,95 @@
+/* Home */
+.HomeBoxTitle{
+  width: 212px;
+  margin: auto;
+}
+
+.HomeTitle {
+  background: rgb(250,205,72);
+  background: -moz-linear-gradient(90deg, rgba(250,205,72,1) 20%, rgba(132,188,137,1) 50%, rgba(61,130,242,1) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(250,205,72,1) 20%, rgba(132,188,137,1) 50%, rgba(61,130,242,1) 100%);
+  background: linear-gradient(90deg, rgba(250,205,72,1) 20%, rgba(132,188,137,1) 50%, rgba(61,130,242,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#facd48",endColorstr="#3d82f2",GradientType=1); 
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-size: 4rem;
+}
+
+/* TodoInput */
+.TodoInputContainer {
+	padding: 10px;
+	margin: auto;
+	width: fit-content;
+	border-width: 1px;
+	border-color: #cccccc;
+	border-style: solid;
+	border-radius: 50px;
+	box-shadow: 0px 0px 6px rgba(66, 66, 66, 0.34);
+	text-shadow: 0px 0px 5px rgba(66, 66, 66, 0.75);
+}
+
+.TodoInputTextBox {
+	border: none;
+	width: 300px;
+}
+
+.TodoInputTextBox:focus {
+	outline: none;
+}
+
+.TodoInputButton {
+	font-weight: bold;
+	background-color: white;
+	border: none;
+}
+
+.TodoInputButton:hover {
+	color: #61cf55;
+}
+
+
+/* TodoItem */
+.TodoItemTitle {
+	width: 20px;
+}
+
+.TodoItemCompleted {
+	color: gray;
+	font-style: italic;
+	text-decoration: line-through;
+}
+
+.TodoItemRow {
+	border-bottom: 2px solid rgb(201, 201, 201);
+}
+
+.TodoItemContent {
+	height: 50px;
+	width: 50px;
+	text-align: end;
+}
+
+.TodoItemButton {
+	color: #e44f4f;
+	font-weight: bold;
+	background-color: rgb(209, 209, 209);
+	border-radius: 20px;
+  border: none;
+  line-height: 35px;
+  font-size: 10px;
+}
+
+.TodoItemButton:hover {
+	color: #c24848;
+}
+
+
+/* TodoList */
+.TodoListContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: left;
+	width: 500px;
+	margin: 10px auto;
+}
