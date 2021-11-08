@@ -3,36 +3,34 @@ import styles from './FormPage.module.css'
 
 export default function FormPage() {
   const initData = {
-    judul: "",
-    pengarang: "",
-    cetakan: "",
-    tahunTerbit: 0,
-    kotaTerbit: "",
-    harga: 0,
+    nama: "",
+    email: "",
+    noHandphone: "",
+    pendidikan: "",
+    kelas: "",
+    harapan: "",
+  }
+
+  const errData = {
+    nama: "",
+    email: "",
+    noHandphone: "",
   }
 
   const [data, setData] = useState(initData)
+  const [errMsg, setErrMsg] = useState(errData)
   const regex = /^[A-Za-z ]*$/
-  const [errMsg, setErrMsg] = useState("")
-  const fotoSampul = useRef(null)
+  const suratKesungguhan = useRef('')
 
   const handleInput = e => {
     const name = e.target.name
     const value = e.target.value
 
-    if (name === "pengarang") {
+    if (name === "nama") {
       if (regex.test(value)) {
         setErrMsg("")
       } else {
-        setErrMsg("Nama Pengarang Harus Berupa Huruf")
-      }
-    }
-
-    if (name === "judul") {
-      if (regex.test(value)) {
-        setErrMsg("")
-      } else {
-        setErrMsg("Nama Pengarang Harus Berupa Huruf")
+        setErrMsg({ nama: "Nama Lengkap Harus Berupa Huruf" })
       }
     }
 
@@ -42,13 +40,14 @@ export default function FormPage() {
     })
 
     console.log("data", data)
+    console.log("err nama", errMsg.nama)
   }
 
   const handleSubmit = (e) => {
     if (errMsg !== "") {
-      alert("Terdapat data yang tidak sesuai")
+      alert("Data Pendaftar Tidak Sesuai")
     } else {
-      alert(`Data Buku "${data.judul}" Berhasil Diterima`)
+      alert(`Data Pendaftar "${data.nama}" Berhasil Diterima`)
     }
     resetData()
     e.preventDefault()
@@ -61,37 +60,47 @@ export default function FormPage() {
 
   return (
     <>
-      <h1 style={{ "text-align": "center" }}>Formulir Buku Baru</h1>
+      <h1 style={{ "text-align": "center" }}>Pendaftaran Peserta Coding Bootcamp</h1>
       <form onSubmit={handleSubmit}>
         <label>
-          Judul:
-          <input type="text" name="judul" className={styles.input} value={data.judul} onChange={handleInput} required />
+          Nama Lengkap:
+          <input type="text" name="nama" className={styles.input} value={data.nama} onChange={handleInput} required />
         </label>
         <label>
-          Pengarang:
-          <input type="text" name="pengarang" className={styles.input} value={data.pengarang} onChange={handleInput} required />
+          Email:
+          <input type="text" name="email" className={styles.input} value={data.email} onChange={handleInput} required />
         </label>
         <label>
-          Cetakan:
-          <input type="text" name="cetakan" className={styles.input} value={data.cetakan} onChange={handleInput} />
+          No Handphone:
+          <input type="text" name="noHandphone" className={styles.input} value={data.noHandphone} onChange={handleInput} />
+        </label>
+        <label style={{ "margin": "unset" }}>
+          Latar Belakang Pendidikan:
+          <div>
+            <input type="radio" name="pendidikan" value={data.pendidikan} onChange={handleInput} />
+            <label style={{ "padding": "unset" }}>IT</label>
+            <input type="radio" name="pendidikan" value={data.pendidikan} onChange={handleInput} />
+            <label style={{ "padding": "unset" }}>Non IT</label>
+          </div>
         </label>
         <label>
-          Tahun Terbit:
-          <input type="number" name="tahunTerbit" className={styles.input} value={data.tahunTerbit} onChange={handleInput} />
+          Kelas Coding yang Dipilih:
+          <select type="text" name="kelas" className={styles.input} value={data.kelas} onChange={handleInput}>
+            <option value="" selected disabled hidden>Pilih Salah Satu Program</option>
+            <option>Coding BackEnd with Golang</option>
+            <option>Coding FrontEnd with ReactJS</option>
+            <option>Fullstack Developer</option>
+          </select>
         </label>
         <label>
-          Kota Terbit:
-          <input type="text" name="kotaTerbit" className={styles.input} value={data.kotaTerbit} onChange={handleInput} />
+          Foto Surat Kesungguhan:
+          <input type="file" className={styles.input} refs={suratKesungguhan} />
         </label>
         <label>
-          Harga:
-          <input type="number" name="harga" className={styles.input} value={data.harga} onChange={handleInput} />
+          Harapan Untuk Coding Bootcamp ini:
+          <textarea name="harapan" id="" cols="30" rows="5" className={styles.input} value={data.harapan} onChange={handleInput}></textarea>
         </label>
-        <label>
-          Foto Sampul:
-          <input type="file" className={styles.input} refs={fotoSampul} />
-        </label>
-        <span className={styles.errorMessage}>{errMsg}</span>
+        <span className={styles.errorMessage}>{errMsg.nama}</span>
         <div>
           <input type="submit" className={styles.btn} value="Submit" />
           <button className={`${styles.btn} ${styles.btnReset}`} onClick={resetData}>Reset</button>
