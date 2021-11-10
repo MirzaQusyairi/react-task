@@ -6,6 +6,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Home from './pages/Todo/Home'
 import About from './pages/About/About'
 import NotFound from './pages/NotFound/NotFound'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import { store, persistor } from './store/store'
 
 function App() {
   const AboutApp_Title = "App";
@@ -15,27 +18,31 @@ function App() {
 
   return (
     <>
-      <Router>
-        <Switch>
-          <Route path='/' exact>
-            <Navbar />
-            <Home />
-          </Route>
-          <Route path='/about' exact>
-            <NavbarAbout />
-            <About title='Page' />
-          </Route>
-          <Route path="/about/about-app">
-            <NavbarAbout />
-            <About title={AboutApp_Title} text={AboutApp_Text} />
-          </Route>
-          <Route path="/about/about-author">
-            <NavbarAbout />
-            <About title={AboutAuthor_Title} text={AboutAuthor_Text} />
-          </Route>
-          <Route component={NotFound} />
-        </Switch>
-      </Router>
+      <Provider store={store}>
+        <PersistGate Loading={null} persistor={persistor}>
+          <Router>
+            <Switch>
+              <Route path='/' exact>
+                <Navbar />
+                <Home />
+              </Route>
+              <Route path='/about' exact>
+                <NavbarAbout />
+                <About title='Page' />
+              </Route>
+              <Route path="/about/about-app">
+                <NavbarAbout />
+                <About title={AboutApp_Title} text={AboutApp_Text} />
+              </Route>
+              <Route path="/about/about-author">
+                <NavbarAbout />
+                <About title={AboutAuthor_Title} text={AboutAuthor_Text} />
+              </Route>
+              <Route component={NotFound} />
+            </Switch>
+          </Router>
+        </PersistGate>
+      </Provider>
     </>
   );
 }

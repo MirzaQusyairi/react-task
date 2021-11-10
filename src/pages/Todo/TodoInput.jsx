@@ -1,8 +1,11 @@
 import { useState } from 'react'
+import { useDispatch } from "react-redux"
+import { addTodo } from "../../store/todoSlice"
 import styles from './Styles.module.css'
 
 export default function TodoInput(props) {
-  const { addTodo } = props;
+  const dispatch = useDispatch()
+
   const [state, setState] = useState({
     title: "",
     completed: false,
@@ -11,21 +14,22 @@ export default function TodoInput(props) {
   const onChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const isEmpty = state.title === "";
+    const isEmpty = state.title === ""
     if (!isEmpty) {
       const newData = {
         title: state.title,
         completed: state.completed,
       };
-      addTodo(newData);
+      dispatch(addTodo(newData))
       setState({
         title: "",
         completed: false,
       });
     } else {
-      alert("Title can't be empty");
+      alert("Title can't be empty")
     }
   };
 
