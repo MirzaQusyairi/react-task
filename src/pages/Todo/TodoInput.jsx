@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { useDispatch } from "react-redux"
 import { addTodo } from "../../store/todoSlice"
 import styles from './Styles.module.css'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function TodoInput(props) {
   const dispatch = useDispatch()
@@ -29,12 +31,22 @@ export default function TodoInput(props) {
         completed: false,
       });
     } else {
-      alert("Title can't be empty")
+      // alert("Title can't be empty")
+      toast.warn("Title can't be empty!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
   return (
     <div className={styles.TodoInputContainer}>
+      <ToastContainer limit={1} />
       <input
         type="text"
         placeholder="Add todo..."
