@@ -1,0 +1,20 @@
+.sideimage {
+    background-image: url("../../Assets/Images/charles-rRWiVQzLm7k-unsplash.jpg");
+    background-size: cover;
+    /* height: 100vh; */
+}
+
+.left {
+    width: 70vh;
+    height: 100vh;
+}
+
+.logo {
+    width: 45vh;
+
+}
+
+.overlay {
+	background: #19345ea6;
+	z-index: 2;
+}
