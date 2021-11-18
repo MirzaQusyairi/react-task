@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client'
 
-const GETDATA = gql`
-  query GetDataAll {
+const GetPassengerAll = gql`
+  query GetPassengerAll {
     anggota {
       id
       jenis_kelamin
@@ -11,8 +11,8 @@ const GETDATA = gql`
   }
 `
 
-const GETDATABYID = gql`
-  query GetDataByID($id: Int!) {
+const GetPassengerByID = gql`
+  query GetPassengerByID($id: Int!) {
     anggota(where: { id: { _eq: $id } }) {
       id
       jenis_kelamin
@@ -22,4 +22,4 @@ const GETDATABYID = gql`
   }
 `
 
-export { GETDATA, GETDATABYID }
+export { GetPassengerAll, GetPassengerByID }
