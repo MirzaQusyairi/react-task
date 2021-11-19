@@ -1,82 +1,45 @@
-import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
-import PassengerInput from './PassengerInput';
-import ListPassenger from './ListPassenger';
-import Header from './Header';
-import { useLazyQuery, useMutation } from "@apollo/client";
-import { GetPassengerAll, GetPassengerByID } from '../GraphQL/Query'
-import { InsertPassenger, UpdatePassenger, DeletePassenger } from '../GraphQL/Mutation'
-import Loading from './Loading';
+import { useEffect, useState } from 'react'
+import PassengerInput from './PassengerInput'
+import ListPassenger from './ListPassenger'
+import Header from './Header'
+import useGetPassengerAll from '../Hooks/useGetPassengerAll'
+import useGetPassengerByID from '../Hooks/useGetPassengerByID'
+import useInsertPassenger from '../Hooks/useInsertPassenger'
+import useUpdatePassenger from '../Hooks/useUpdatePassenger'
+import useDeletePassenger from '../Hooks/useDeletePassenger'
+import useSubscribePassenger from '../Hooks/useSubscribePassenger'
+import Loading from './Loading'
 
 export default function Home() {
-    const [getPassengerList, { data, loading, error }] =
-        useLazyQuery(GetPassengerAll);
+    const [userID, setUserID] = useState("")
+    const [passenger, setPassenger] = useState()
 
-    const [getPassenger, { loading: loadingSearch, error: errorSearch }] =
-        useLazyQuery(GetPassengerByID, {
-            fetchPolicy: "network-only",
-            onCompleted: (data) => {
-                setPassenger(data.anggota);
-            },
-        });
-
-    const [insertPassenger, { loading: loadingInsert }] = useMutation(
-        InsertPassenger,
-        {
-            refetchQueries: [GetPassengerAll],
-            awaitRefetchQueries: true,
-            onCompleted: (data) => {
-                setPassenger(data.anggota);
-            },
-        }
-    );
-
-    const [deletePassenger, { loading: loadingDelete }] = useMutation(
-        DeletePassenger,
-        {
-            refetchQueries: [GetPassengerAll],
-            awaitRefetchQueries: true,
-            onCompleted: (data) => {
-                setPassenger(data.anggota);
-            },
-        }
-    );
-
-    const [updatePassenger, { loading: loadingUpdate }] = useMutation(
-        UpdatePassenger,
-        {
-            refetchQueries: [GetPassengerAll],
-            awaitRefetchQueries: true,
-            onCompleted: (data) => {
-                setPassenger(data.anggota);
-            },
-        }
-    );
-
-    const [userID, setUserID] = useState("");
-    const [passenger, setPassenger] = useState();
+    const { data, loading, error, subscribePassenger } = useGetPassengerAll()
+    const { dataSearch, getPassenger, loadingSearch, errorSearch } = useGetPassengerByID()
+    const { insertPassenger, loadingInsert } = useInsertPassenger()
+    const { updatePassenger, loadingUpdate } = useUpdatePassenger()
+    const { deletePassenger, loadingDelete } = useDeletePassenger()
+    const { dataSubs, loadingSubs, errorSubs } = useSubscribePassenger()
 
     useEffect(() => {
-        getPassengerList();
-        if (data && typeof passenger === "undefined") {
-            setPassenger(data.anggota);
+        if (!loading && !dataSearch && userID === "") {
+            subscribePassenger()
+            setPassenger(dataSubs?.anggota)
         }
-    }, [data, passenger, getPassengerList]);
+        if (dataSearch && userID !== "") {
+            setPassenger(dataSearch?.anggota)
+        }
+    }, [subscribePassenger, loading, dataSubs, dataSearch, userID])
 
-    if (error || errorSearch) {
-        console.log(error);
-        console.log(errorSearch);
-        return null;
+    if (error || errorSearch || errorSubs) {
+        console.log(error)
+        console.log(errorSearch)
+        console.log(errorSubs)
+        return null
     }
 
-    if (
-        loading ||
-        loadingSearch ||
-        loadingInsert ||
-        loadingDelete ||
-        loadingUpdate
-    ) {
-        return <Loading />;
+    if (loading || loadingSearch || loadingInsert || loadingDelete || loadingUpdate || loadingSubs) {
+        return <Loading />
     }
 
     const hapusPengunjung = (id) => {
@@ -101,7 +64,6 @@ export default function Home() {
 
     const tambahPengunjung = (newUser) => {
         const newPassenger = {
-            id: uuidv4(),
             ...newUser,
         };
         insertPassenger({
@@ -115,17 +77,21 @@ export default function Home() {
     };
 
     const onGetData = () => {
+        // getPassenger({
+        //     variables: {
+        //         id: userID === "" ? 0 : userID,
+        //     },
+        // })
         if (userID === "") {
             setPassenger(() => {
-                getPassengerList();
                 return data.anggota;
-            });
+            })
         } else {
             getPassenger({
                 variables: {
                     id: userID,
                 },
-            });
+            })
         }
     };
 
@@ -138,8 +104,10 @@ export default function Home() {
     return (
         <div>
             <Header />
-            <input value={userID} onChange={onChangeID} placeholder="input id here..."></input>
-            <button onClick={onGetData}>Get Data</button><br /><br />
+            <form form onSubmit={onGetData}>
+                <label>Search By ID </label>
+                <input value={userID} onChange={onChangeID} placeholder="input id here..."></input>
+            </form><br />
             <ListPassenger passenger={passenger} editPengunjung={editPengunjung} hapusPengunjung={hapusPengunjung} />
             <PassengerInput tambahPengunjung={tambahPengunjung} />
         </div>
